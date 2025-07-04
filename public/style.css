@@ -1,0 +1,137 @@
+:root {
+  --bg: #121212; --fg: #e0e0e0; --bg-elevated: #1e1e1e; --accent: #4a90e2; --accent-hover: #357ab8;
+  --radius: 8px; --transition: 0.3s; --shadow: 0 2px 5px rgba(0,0,0,0.3); --shadow-hover: 0 5px 15px rgba(0,0,0,0.4);
+  --border: #333; --border-hover: #444; --bg-input: #2a2a2a; --text-secondary: #aaa; --bg-hover: #2a2a2a;
+  --bg-attachment: #252525; --bg-delete: rgba(255,0,0,0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body, html { width: 100%; height: 100%; background: var(--bg); color: var(--fg); font-family: 'Segoe UI', sans-serif; }
+
+#app { display: flex; height: 100%; }
+
+#profile-menu {
+  width: 220px; background: var(--bg-elevated); border-right: 1px solid var(--border); padding: 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 15px; transition: transform var(--transition);
+}
+#profile-menu:hover { transform: translateX(-5px); }
+
+#chat { flex: 1; display: flex; flex-direction: column; padding: 20px; position: relative; }
+
+.avatar-wrapper {
+  width: 100px; height: 100px; border-radius: 50%; overflow: hidden; cursor: pointer;
+  transition: box-shadow var(--transition); background: var(--bg-input);
+}
+.avatar-wrapper:hover { box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+.avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+#nickname-input, #msg-input {
+  width: 100%; padding: 8px; background: var(--bg-input); color: var(--fg);
+  border: 1px solid var(--border); border-radius: var(--radius); transition: border-color var(--transition);
+}
+#nickname-input:focus, #msg-input:focus { border-color: var(--accent); outline: none; }
+#msg-input { flex: 1; padding: 10px; }
+
+button {
+  cursor: pointer; transition: background var(--transition); border: none;
+  border-radius: var(--radius); background: var(--bg-input); color: var(--fg);
+}
+
+#save-profile, #send-form button[type="submit"] {
+  padding: 8px 16px; background: var(--accent); color: #fff;
+}
+#save-profile:hover, #send-form button[type="submit"]:hover { background: var(--accent-hover); }
+#send-form button[type="submit"] { padding: 10px 20px; }
+
+#messages {
+  flex: 1; overflow-y: auto; display: flex; flex-direction: column;
+  gap: 10px; padding-bottom: 10px;
+}
+
+.message {
+  max-width: 60%; padding: 10px 15px; background: var(--bg-elevated); border-radius: var(--radius);
+  box-shadow: var(--shadow); transition: background-color var(--transition); position: relative;
+  overflow-wrap: break-word; word-wrap: break-word; word-break: break-word;
+}
+.message:not(.self):hover { background-color: var(--bg-hover); }
+.message.self { background: var(--accent); color: #fff; }
+.message.self:hover { background-color: var(--accent-hover); }
+
+.message-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 5px;
+}
+.message-header img {
+  width: 24px; height: 24px; border-radius: 50%; object-fit: cover; background: var(--bg-input);
+}
+.message-header strong { line-height: 1; }
+
+.message img.attachment {
+  max-width: 100%; max-height: 300px; border-radius: var(--radius); margin-top: 5px;
+  display: block; object-fit: contain; background: var(--bg-attachment);
+}
+
+.media-attachment {
+  max-width: 100% !important; max-height: 400px !important; border-radius: 8px; margin-top: 8px;
+  object-fit: contain; background-color: var(--bg-attachment); display: block;
+}
+video.media-attachment { background-color: #000; width: 100%; height: auto; aspect-ratio: 16/9; }
+
+.file-attachment {
+  display: flex; align-items: center; gap: 8px; margin-top: 8px; padding: 8px;
+  background-color: var(--bg-attachment); border-radius: var(--radius);
+}
+.file-icon { font-size: 24px; color: var(--accent); }
+.file-name { font-size: 14px; overflow: hidden; text-overflow: ellipsis; color: var(--fg); }
+
+.delete-btn {
+  position: absolute; top: 6px; right: 6px; background: var(--bg-delete); color: #fff;
+  border-radius: 50%; width: 20px; height: 20px; font-size: 12px; opacity: 0;
+  transition: opacity var(--transition), background var(--transition);
+  display: flex; align-items: center; justify-content: center;
+}
+.message:hover .delete-btn { opacity: 1; }
+.delete-btn:hover { background: rgba(255,0,0,0.7); }
+
+.msg-time {
+  font-size: 11px; position: absolute; bottom: 4px; right: 8px; color: var(--text-secondary);
+}
+.message:not(.self) .msg-time { color: var(--text-secondary); }
+.message.self .msg-time { color: rgba(255,255,255,0.7); }
+
+.message a { color: #64a8ff; text-decoration: underline; }
+.message.self a { color: #c2dcff; }
+.message a:hover { text-decoration: none; }
+
+#typing-indicator {
+  font-size: 12px; color: var(--text-secondary); padding: 5px 10px; background: var(--bg-elevated);
+  border-radius: var(--radius); margin-bottom: 5px; align-self: flex-start; transition: opacity 0.3s ease;
+}
+
+#send-form {
+  display: flex; flex-wrap: wrap; gap: 10px; padding-top: 10px; border-top: 1px solid var(--border);
+  align-items: center; position: relative;
+}
+.input-actions { display: flex; gap: 5px; }
+
+.file-label {
+  background: var(--bg-input); color: var(--fg); padding: 8px 12px; border-radius: var(--radius);
+  cursor: pointer; transition: background var(--transition); font-size: 14px; user-select: none;
+}
+.file-label:hover { background: var(--bg-hover); }
+
+.file-preview {
+  display: flex; align-items: center; gap: 8px; background: var(--bg-attachment);
+  border-radius: var(--radius); padding: 5px 10px; margin: 5px 0; font-size: 14px; width: 100%;
+}
+#file-name {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; color: var(--fg);
+}
+#cancel-file { background: none; font-size: 16px; color: var(--text-secondary); transition: color var(--transition); }
+#cancel-file:hover { color: #ff5555; }
+
+.hidden { display: none !important; opacity: 0; }
+
+#upload-progress {
+  position: absolute; bottom: 0; left: 0; height: 4px; background: var(--accent);
+  transition: width 0.3s; z-index: 10;
+}

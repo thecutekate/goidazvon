@@ -1,0 +1,84 @@
+/* GIF-related styles for GOIDAZVON chat */
+
+/* GIF search input */
+#gif-search {
+  width: 100%; padding: 8px; background: var(--bg-input); color: var(--fg);
+  border: 1px solid var(--border); border-radius: var(--radius); transition: border-color var(--transition);
+}
+#gif-search:focus { border-color: var(--accent); outline: none; }
+
+/* GIF search button */
+#gif-search-btn {
+  padding: 8px 12px; background: var(--accent); color: #fff;
+  cursor: pointer; transition: background var(--transition); border: none;
+  border-radius: var(--radius);
+}
+#gif-search-btn:hover { background: var(--accent-hover); }
+
+/* GIF attachment in messages */
+.message .gif-attachment {
+  max-width: 100%; max-height: 250px; border-radius: var(--radius); margin-top: 5px;
+  display: block; object-fit: contain; background: var(--bg-attachment); cursor: pointer;
+}
+
+/* GIF panel */
+#gif-panel {
+  position: fixed; bottom: 70px; right: 15px; width: 320px; background: var(--bg-elevated);
+  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-hover);
+  padding: 12px; z-index: 1001; height: 350px; display: flex; flex-direction: column;
+}
+
+/* GIF search container */
+.gif-search { 
+  display: flex; gap: 8px; margin-bottom: 12px; 
+}
+.gif-search input { 
+  flex: 1; 
+}
+
+/* GIF results grid */
+#gif-results {
+  flex: 1; overflow-y: auto; display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; padding: 4px;
+}
+
+/* Individual GIF item */
+.gif-item {
+  border-radius: 4px; overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+  aspect-ratio: 1 / 1; background: var(--bg-input); position: relative;
+}
+.gif-item:hover {
+  transform: scale(1.05); box-shadow: 0 0 8px rgba(74, 144, 226, 0.3); z-index: 2;
+}
+.gif-item img { 
+  width: 100%; height: 100%; object-fit: cover; display: block; 
+}
+
+/* GIF attribution */
+.gif-attribution {
+  text-align: center; padding-top: 8px; margin-top: 8px; border-top: 1px solid var(--border);
+  color: var(--text-secondary); font-size: 0.8rem;
+}
+
+/* GIF loading states */
+.gif-loading, .gif-error, .gif-not-found {
+  text-align: center; padding: 20px; color: var(--text-secondary); font-size: 14px;
+}
+
+.gif-error {
+  color: #ff5555;
+}
+
+.gif-not-found {
+  color: var(--text-secondary);
+}
+
+/* GIF button in input actions */
+#gif-btn {
+  background: var(--bg-input); color: var(--fg); padding: 8px 12px;
+  cursor: pointer; transition: background var(--transition); border: none;
+  border-radius: var(--radius); font-size: 12px; font-weight: bold;
+}
+#gif-btn:hover { 
+  background: var(--bg-hover); 
+}

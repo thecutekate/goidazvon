@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>GOIDAZVON</title>
+  <link rel="icon" href="https://cdn.glitch.global/64f67462-f466-4742-90e0-22674fa7d85b/logo.png?v=1751484666333" type="image/x-icon">
+  <link rel="shortcut icon" href="https://cdn.glitch.global/64f67462-f466-4742-90e0-22674fa7d85b/logo.png?v=1751484666333" type="image/x-icon">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/gif.css">
+</head>
+<body>
+  <div id="app">
+    <aside id="profile-menu">
+      <div class="avatar-wrapper">
+        <img id="avatar-img" src="https://cdn.glitch.global/64f67462-f466-4742-90e0-22674fa7d85b/225-default-avatar.png?v=1750874399111" alt="Аватар" />
+        <input type="file" id="avatar-input" accept="image/*" hidden />
+      </div>
+      <input type="text" id="nickname-input" placeholder="Никнейм" maxlength="42" />
+      <button id="save-profile">Сохранить</button>
+    </aside>
+    <main id="chat">
+      <div id="messages"></div>
+      <div id="typing-indicator" class="hidden"></div>
+      <form id="send-form">
+        <label class="file-label">
+          📎 Прикрепить
+          <input type="file" id="file-input" hidden />
+        </label>
+        <div id="file-preview" class="file-preview hidden">
+          <span id="file-name"></span>
+          <button type="button" id="cancel-file">✕</button>
+        </div>
+        <input type="text" id="msg-input" placeholder="Написать сообщение…" 
+               autocomplete="off" maxlength="5000" />
+        <div class="input-actions">
+          <button type="button" id="gif-btn" title="GIF">GIF</button>
+          <button type="submit">→</button>
+        </div>
+      </form>
+      
+      <!-- GIF панель -->
+      <div id="gif-panel" class="hidden">
+        <div class="gif-search">
+          <input type="text" id="gif-search" placeholder="Поиск GIF..." autocomplete="off">
+          <button id="gif-search-btn">Найти</button>
+        </div>
+        <div id="gif-results"></div>
+        <div class="gif-attribution">
+          <small>GIFs by Tenor</small>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/gif.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
